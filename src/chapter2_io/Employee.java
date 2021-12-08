@@ -1,8 +1,9 @@
 package chapter2_io;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Employee {
+public class Employee implements Serializable {
     static final long RECORD_SIZE = 100L;
     static final int NAME_SIZE = 40;
     private String name;
@@ -65,5 +66,20 @@ public class Employee {
 
     public void setHireDay(int hireDay) {
         this.hireDay = hireDay;
+    }
+
+    public void raiseSalary(int amount) {
+        salary += amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", salary=" + salary +
+                ", hireYear=" + hireYear +
+                ", hireMonth=" + hireMonth +
+                ", hireDay=" + hireDay +
+                '}';
     }
 }
