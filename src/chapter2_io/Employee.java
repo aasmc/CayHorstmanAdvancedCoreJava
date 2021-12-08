@@ -3,11 +3,21 @@ package chapter2_io;
 import java.time.LocalDate;
 
 public class Employee {
+    static final long RECORD_SIZE = 100L;
+    static final int NAME_SIZE = 40;
     private String name;
     private double salary;
     private int hireYear;
     private int hireMonth;
     private int hireDay;
+
+    public Employee() {
+        this.name = "";
+        this.salary = 0;
+        this.hireYear = 0;
+        this.hireMonth = 0;
+        this.hireDay = 0;
+    }
 
     public Employee(String name, double salary, int hireYear, int hireMonth, int hireDay) {
         this.name = name;
