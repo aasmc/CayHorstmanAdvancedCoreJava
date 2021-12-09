@@ -8,24 +8,18 @@ public class Employee implements Serializable {
     static final int NAME_SIZE = 40;
     private String name;
     private double salary;
-    private int hireYear;
-    private int hireMonth;
-    private int hireDay;
+    private LocalDate hireDay;
 
     public Employee() {
         this.name = "";
         this.salary = 0;
-        this.hireYear = 0;
-        this.hireMonth = 0;
-        this.hireDay = 0;
+        this.hireDay = LocalDate.of(1990, 1, 1);
     }
 
     public Employee(String name, double salary, int hireYear, int hireMonth, int hireDay) {
         this.name = name;
         this.salary = salary;
-        this.hireDay = hireDay;
-        this.hireMonth = hireMonth;
-        this.hireYear = hireYear;
+        this.hireDay = LocalDate.of(hireYear, hireMonth, hireDay);
     }
 
     public String getName() {
@@ -45,31 +39,24 @@ public class Employee implements Serializable {
     }
 
     public int getHireYear() {
-        return hireYear;
-    }
-
-    public void setHireYear(int hireYear) {
-        this.hireYear = hireYear;
+        return hireDay.getYear();
     }
 
     public int getHireMonth() {
-        return hireMonth;
-    }
-
-    public void setHireMonth(int hireMonth) {
-        this.hireMonth = hireMonth;
+        return hireDay.getMonthValue();
     }
 
     public LocalDate getHireDay() {
-        return LocalDate.of(hireYear, hireMonth, hireDay);
+        return hireDay;
     }
 
-    public void setHireDay(int hireDay) {
+    public void setHireDay(LocalDate hireDay) {
         this.hireDay = hireDay;
     }
 
-    public void raiseSalary(int amount) {
-        salary += amount;
+    public void raiseSalary(double byPercent) {
+        double raise = salary * byPercent / 100;
+        salary += raise;
     }
 
     @Override
@@ -77,8 +64,6 @@ public class Employee implements Serializable {
         return "Employee{" +
                 "name='" + name + '\'' +
                 ", salary=" + salary +
-                ", hireYear=" + hireYear +
-                ", hireMonth=" + hireMonth +
                 ", hireDay=" + hireDay +
                 '}';
     }
