@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -26,6 +27,11 @@ public class HrefMatch {
         } catch(IOException | PatternSyntaxException e) {
             e.printStackTrace();
         }
+
+        String result = Pattern.compile("\\pL{4,}")
+                .matcher("Mart had a little lamb")
+                .replaceAll(m -> m.group().toUpperCase(Locale.ROOT));
+        System.out.println("result = " + result);
     }
 
 }
